@@ -1,7 +1,7 @@
-# Sor (Software Restaurant) Backend
-## Node.js + Express + Mongoose + Typescript
+# Prueba Técnica NEXTIA (Vacante Javascript)
+## Node.js + Express + Sequelize + Typescript
 
-Este proyecto está realizado utilizando [Clean Arquitecture](https://www.c-sharpcorner.com/article/what-is-clean-architecture/), con las librerías de Express para el manejo de RESTful APIs y Mongoose para la conectividad con MongoDB, utilizando Typescript.
+Este proyecto está realizado utilizando [Clean Arquitecture](https://www.c-sharpcorner.com/article/what-is-clean-architecture/), con las librerías de Express para el manejo de RESTful APIs y Sequelize para la conectividad con MySQL, utilizando Typescript.
 
 ___
 ## Recomendación de IDE Setup
@@ -27,9 +27,16 @@ npm install
 ```
 NODE_ENV=*(localhost/development/production)*
 PORT=3333 *O EL PUERTO QUE DESEES UTILIZR*
-DATABASE_TYPE=MONGO
+DATABASE_TYPE=MYSQL
+EXPIRATION_TIME=24h *O EL TIEMPO QUE SE DESEE ASIGNAR*
+
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USERNAME=root
+MYSQL_PASSWORD=*LA CONTRASEÑA DEL USUARIO*
+MYSQL_DATABASE=*NOMBRE DE BASE DE DATOS*
+
 MONGODB_URI=*EJEMPLO:(mongodb://localhost:27017/NOMBRE_DE_MI_DB)*
-EXPIRATION_TIME=24h
 
 SECRET_KEY=*AQUI VA LA LLAVE SECRETA PARA GENERAR LOS JWT*
 ```
@@ -38,10 +45,7 @@ SECRET_KEY=*AQUI VA LA LLAVE SECRETA PARA GENERAR LOS JWT*
 ```
 npm run dev
 ```
-- Comando que utiliza las variables de entorno `.env.local`
-```
-npm run dev:local
-```
+
 Cada de guardas un archivo, `nodemon` se encarga de hacer Hot Reload para reiniciar y aplicar los nuevos cambios.
 ### Compilación y ejecución en ambiente Production
 1. Debes crear el archivo `.env`  en la raíz del directorio en caso de que el proyecto lo ejecutes en un servidor en el cual tú mismo hayas subido el proyecto, por ejemplo un servidor virtual privado (VPS). Si el proyecto lo subes a una plataforma especializada para ello, tales como Heroku, Render, DigitalOcean, etc. Debes añadir cada variable `.env`manualmente en la configuración de tu servicio.
