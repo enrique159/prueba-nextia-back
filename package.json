@@ -1,0 +1,48 @@
+{
+  "name": "prueba-tecnica-nextia",
+  "version": "1.0.0",
+  "description": "Prueba técnica para empresa Nextia, utilizando como modelo de ejemplo la empresa Eugenia",
+  "author": "Enrique Marin",
+  "license": "ISC",
+  "main": "src/server.ts",
+  "scripts": {
+    "build": "npx tsc",
+    "prepare": "ts-patch install -s",
+    "start": "node dist/server.js",
+    "dev": "nodemon -r dotenv/config src/server.ts dotenv_config_path=.env.dev",
+    "dev:local": "nodemon -r dotenv/config src/server.ts dotenv_config_path=.env.local",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.2.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.34",
+    "mongoose": "^6.4.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^18.11.11",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "concurrently": "^7.3.0",
+    "eslint": "^8.40.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1",
+    "ts-patch": "^2.1.0",
+    "ttypescript": "^1.5.15",
+    "typescript": "^4.9.3",
+    "typescript-transform-paths": "^3.4.6"
+  }
+}
