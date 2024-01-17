@@ -1,5 +1,4 @@
-import { Sequelize, Options } from 'sequelize'
-import { IDBConnectionManager } from '../interfaces/IDBConnectionManager'
+import { Sequelize, Options, ModelAttributes, Model } from 'sequelize'
 
 const BASE_OPTIONS: Options = {
   host: 'localhost',
@@ -10,13 +9,14 @@ const BASE_OPTIONS: Options = {
   dialect: 'mysql',
 }
 
-export default class SequelizeManager implements IDBConnectionManager {
+export default class SequelizeManager extends Sequelize  {
   private static instance: SequelizeManager
   private _options: Options
-  private _sequelize: Sequelize | undefined
+  public _sequelize: Sequelize | undefined
 
-  private constructor(url: Options = BASE_OPTIONS) {
-    this._options = url
+  private constructor(options: Options = BASE_OPTIONS) {
+    super(options)
+    this._options = options
   }
 
   // GET THE INSTANCE OF THE CLASS
@@ -36,6 +36,16 @@ export default class SequelizeManager implements IDBConnectionManager {
   // DISCONNECT FROM THE DATABASE
   public async disconnect(): Promise<void> {
     await this._sequelize?.close()
+  }
+
+  // SYNC THE DATABASE
+  public async synchronize(): Promise<void> {
+    await this._sequelize?.sync()
+  }
+
+  // DEFINE MODEL
+  public async defineModel<T>(modelName: string, attributes: ModelAttributes) {
+    return await this._sequelize?.define<Model<T>>(modelName, attributes)
   }
 
   // GET THE STATUS OF THE CONNECTION

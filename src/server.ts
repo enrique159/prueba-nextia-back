@@ -4,6 +4,10 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 // DEPENDENCIES
 import DBConnectionManager from '@shared/database/services/DBConnectionManager'
+// MODELS
+import { UserModel } from '@/app/modules/users/data/model'
+// ROUTES
+import { Routes } from '@/routes'
 
 // SERVER
 dotenv.config()
@@ -16,13 +20,14 @@ app.use(express.json())
 app.use(cookieParser())
 
 // ROUTES
-app.use('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/', Routes())
 
 // DATABASE CONNECTION
 const dbConnectionManager = DBConnectionManager.getInstance()
 dbConnectionManager.connect()
+// GENERATE MODELS
+UserModel()
+
 
 app.listen(port, () => {
   console.log(`[server⚡️]: Server is running on port: ${port}`)

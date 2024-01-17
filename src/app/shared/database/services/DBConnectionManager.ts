@@ -1,13 +1,17 @@
-import { Options } from 'sequelize'
+import { Options, Sequelize } from 'sequelize'
 import { IDBConnectionManager } from '../interfaces/IDBConnectionManager'
 // import MongooseManager from '../integrations/MongooseManager'
 import SequelizeManager from '../integrations/SequelizeManager'
 
 // Types
 import { DatabaseTypes } from '../interfaces/DatabaseTypes'
+import { DBInstance } from '../interfaces/IDBInstance'
+
+
 
 export default class DBConnectionManager implements IDBConnectionManager {
   private static instance: DBConnectionManager
+  public dbInstance: DBInstance
   public _options: Options = {
     host: process.env.MYSQL_HOST,
     database: process.env.MYSQL_DATABASE,
@@ -31,8 +35,8 @@ export default class DBConnectionManager implements IDBConnectionManager {
       console.log('[server⚡️]: Database Type: ' + DatabaseTypes.MYSQL)
       console.log('[server⚡️]: Connection to Database: CONNECTING')
       // Get the instance of the class
-      const sequelizeManager = SequelizeManager.getInstance(this._options)
-      await sequelizeManager.connect()
+      this.dbInstance = SequelizeManager.getInstance(this._options)
+      await this.dbInstance.connect()
         .then(() => {
           console.log('[server⚡️]: Connection to Database: SUCCESS')
         })
@@ -50,9 +54,7 @@ export default class DBConnectionManager implements IDBConnectionManager {
       console.log('Database Type: ' + DatabaseTypes.MYSQL)
       console.log('Connection to Database: DISCONNECTING')
 
-      // Get the instance of the class
-      const sequelizeManager = SequelizeManager.getInstance(this._options)
-      await sequelizeManager.disconnect()
+      await this.dbInstance.disconnect()
         .then(() => {
           console.log('Connection to Database: DISCONNECTED')
         })
@@ -63,12 +65,18 @@ export default class DBConnectionManager implements IDBConnectionManager {
     }
   }
 
-  public async statusConnection(): Promise<boolean> {
+  public async statusConnection(): Promise<boolean | string> {
     // MYSQL
     if (process.env.DATABASE_TYPE === DatabaseTypes.MYSQL) {
       // Get the instance of the class
-      const sequelizeManager = SequelizeManager.getInstance(this._options)
-      return sequelizeManager.statusConnection()
+      return this.dbInstance.statusConnection()
+    }
+  }
+
+  public async sync(): Promise<void> {
+    // MYSQL
+    if (process.env.DATABASE_TYPE === DatabaseTypes.MYSQL) {
+      await this.dbInstance.synchronize()
     }
   }
 }
