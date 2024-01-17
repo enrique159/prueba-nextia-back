@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { logger } from '@/app/shared/log/logger'
 import { UserRequest } from '../domain/interfaces'
+import { encryptPassword } from '@/utils/encryptPassword'
 import CreateUserUseCase from '../useCases/CreateUserUseCase'
 
 export default class CreateUserController {
@@ -13,6 +14,7 @@ export default class CreateUserController {
       department: req.body.department,
     }
 
+    user.password = await encryptPassword(user.password)
     const createUserUseCase = new CreateUserUseCase()
     await createUserUseCase.execute(user)
       .then((user) => {
