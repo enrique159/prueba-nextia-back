@@ -12,7 +12,7 @@ export default class ConsoleLog {
   }
 
   public log() {
-    if(this.info.success) console.log(`[${this.info.HttpType} ${this.info.route}] : ${this.info.useremail} : SUCCESS : ${this.date} ${this.time}`)
-    else console.log(`[${this.info.HttpType} ${this.info.route}] : ${this.info.useremail} : ERROR : ${this.date} ${this.time} : ${this.info.error}`)
+    if(this.info.success) console.log(`[server⚡️]: [${this.info.HttpType} ${this.info.route}] : ${this.info.useremail} : SUCCESS : ${this.date} ${this.time}`)
+    else console.log(`[server⚡️]: [${this.info.HttpType} ${this.info.route}] : ${this.info.useremail} : ERROR : ${this.date} ${this.time} : ${this.info.error}`)
   }
 }

@@ -1,4 +1,4 @@
-import { Options, Sequelize } from 'sequelize'
+import { Options } from 'sequelize'
 import { IDBConnectionManager } from '../interfaces/IDBConnectionManager'
 // import MongooseManager from '../integrations/MongooseManager'
 import SequelizeManager from '../integrations/SequelizeManager'
@@ -19,6 +19,7 @@ export default class DBConnectionManager implements IDBConnectionManager {
     password: process.env.MYSQL_PASSWORD,
     port: parseInt(process.env.MYSQL_PORT as string),
     dialect: 'mysql',
+    logging: process.env.NODE_ENV === 'development' ? true : false,
   }
 
   public static getInstance(): DBConnectionManager {

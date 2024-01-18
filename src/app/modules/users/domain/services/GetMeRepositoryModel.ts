@@ -1,6 +1,6 @@
-import { IId } from '@/app/shared/common/domain/IId'
 import { User } from '../interfaces'
+import { QueryParams } from '@/app/auth/domain/interfaces'
 
 export interface GetMeRepositoryModel {
-  execute(userId: IId): Promise<User>
+  execute(userId: QueryParams): Promise<User>
 }

@@ -13,3 +13,8 @@ export interface AuthResponse {
   token: string;
   user: Partial<User>;
 }
+
+export interface RecoverPassResponse {
+  user: Partial<User>;
+  emailSended: boolean;
+}

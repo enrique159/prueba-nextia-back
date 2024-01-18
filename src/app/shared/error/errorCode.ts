@@ -125,6 +125,14 @@ const ErrorCode: { [key: string]: ErrorType } = {
     description: 'Token provided is expired',
   },
 
+  // Email Provider
+  ERR0020: {
+    code: 'ERR0020',
+    category: ErrorCategory.SYSTEM,
+    msg: 'EMAIL_PROVIDER_ERROR',
+    description: 'Email provider error',
+  },
+
 
   // Booking Module
   ERR0100: {

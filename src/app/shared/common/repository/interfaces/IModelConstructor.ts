@@ -10,4 +10,8 @@ export interface FindOneConstructor<T, U> extends BaseConstructor<T> {
   findOne(value: { where: T }): Promise<U>;
 }
 
-export type ModelConstructor<T, U = T> = CreateConstructor<T> & FindOneConstructor<T, U>;
+export interface UpdateOneConstructor<T,U> extends BaseConstructor<T> {
+  update(value: T, condition): Promise<U>;
+}
+
+export type ModelConstructor<T, U = T> = CreateConstructor<T> & FindOneConstructor<T, U> & UpdateOneConstructor<T, U>;
