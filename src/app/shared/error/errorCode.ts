@@ -133,6 +133,14 @@ const ErrorCode: { [key: string]: ErrorType } = {
     description: 'Email provider error',
   },
 
+  // NOT AUTHORIZED
+  ERR0021: {
+    code: 'ERR0021',
+    category: ErrorCategory.USER,
+    msg: 'NOT_AUTHORIZED',
+    description: 'Not authorized',
+  },
+
 
   // Booking Module
   ERR0100: {

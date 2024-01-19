@@ -13,7 +13,7 @@ export interface Invitation {
 }
 
 export interface InvitationId {
-  invitationId: string;
+  id: string;
 }
 
 export interface InvitationRequest {
