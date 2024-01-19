@@ -73,6 +73,12 @@ npm run build
 npm run start
 ```
 
+### Pruebas unitarias
+Para las pruebas se utiliza la libreria de Jest, con la cual podremos ejecutar las pruebas con el siguiente comando
+```
+npm run test
+```
+
 ---
 # Endpoints
 Lo siguiente es un listado de cómo consumir los endpoints del proyecto. El tipo de autenticación es por medio de *Bearer token JWT*, el cual si se utiliza Postman puede agregarse en la configuracion de autenticación de cada endpoint que lo requiera.
