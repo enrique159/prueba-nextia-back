@@ -36,7 +36,7 @@ export default class RecoverPassUseCase implements BaseUseCase<QueryParams, Prom
 
     const recoverPassResponse: RecoverPassResponse = {
       user,
-      emailSended: true,
+      emailSent: true,
     }
     // Return
     return recoverPassResponse

@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import DBConnectionManager from '@shared/database/services/DBConnectionManager'
 // MODELS
 import { UserModel } from '@/app/modules/users/data/model'
+import { InvitationModel } from '@/app/modules/invitations/data/model'
 // ROUTES
 import { Routes } from '@/routes'
 
@@ -27,6 +28,7 @@ const dbConnectionManager = DBConnectionManager.getInstance()
 dbConnectionManager.connect()
 // GENERATE MODELS
 UserModel()
+InvitationModel()
 
 
 app.listen(port, () => {
