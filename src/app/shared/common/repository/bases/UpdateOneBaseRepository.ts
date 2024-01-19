@@ -12,6 +12,7 @@ export default class UpdateOneBaseRepository<T, U> implements IUpdateOneBaseRepo
 
   public async execute(item: T, condition, model: ModelConstructor<T, U>): Promise<U> {
     if (process.env.DATABASE_TYPE === DatabaseTypes.MYSQL) {
+      console.log('item', item)
       const response = await model.update(item, condition)
       return response
     }

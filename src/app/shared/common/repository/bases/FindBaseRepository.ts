@@ -13,7 +13,6 @@ export default class FindBaseRepository<T, U> implements IFindBaseRepository<T, 
   public async execute(value: T, model: ModelConstructor<T, U>): Promise<U> {
     if (process.env.DATABASE_TYPE === DatabaseTypes.MYSQL) {
       const response = await model.findAll({ where: value })
-      console.log('Hello??', response)
       return response
     }
     // if (process.env.DATABASE_TYPE === DatabaseTypes.MONGO) {
