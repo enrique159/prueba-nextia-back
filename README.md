@@ -18,6 +18,9 @@ Extensiones:
 ---
 ## Configuración y ejecución del projecto
 
+### Base de datos
+Es necesario para este proyecto el uso de una base de datos MySQL, en caso de ya tener una instancia localmente, solo se requiere incluir los datos de la conexión en el archivo .env o .env.dev dependiendo del entorno a ejecutar
+
 ### Instalación y configuración
 1. Para compilar el projecto a producción se require de la librería de `tsc`, la cual podemos instalar de forma global con el siguiente comando. Si ya tienes instalada la librería, ir al siguiente paso.
 ```
