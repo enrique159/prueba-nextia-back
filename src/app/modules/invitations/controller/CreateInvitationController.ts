@@ -5,7 +5,7 @@ import { InvitationRequest } from '../domain/interfaces'
 import CreateInvitationUseCase from '../useCases/CreateInvitationUseCase'
 import HttpStatusCode from '@/app/shared/enums/httpStatusCode'
 
-export default class NameController {
+export default class CreateInvitationController {
   async execute(req: Request, res: Response) {
     const token = req.headers['authorization']
     const decodedToken = decodeToken(token)

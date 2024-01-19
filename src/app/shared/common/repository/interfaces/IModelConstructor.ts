@@ -8,6 +8,7 @@ export interface CreateConstructor<T> extends BaseConstructor<T> {
 
 export interface FindOneConstructor<T, U> extends BaseConstructor<T> {
   findOne(value: { where: T }): Promise<U>;
+  findAll(value: { where: T }): Promise<U>;
 }
 
 export interface UpdateOneConstructor<T,U> extends BaseConstructor<T> {
