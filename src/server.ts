@@ -35,3 +35,5 @@ app.listen(port, () => {
   console.log(`[server⚡️]: Server is running on port: ${port}`)
   console.log(`[server⚡️]: Server enviroment: ${process.env.NODE_ENV}`)
 })
+
+export default app

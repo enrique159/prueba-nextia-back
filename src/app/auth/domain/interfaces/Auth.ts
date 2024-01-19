@@ -15,6 +15,6 @@ export interface AuthResponse {
 }
 
 export interface RecoverPassResponse {
-  user: Partial<User>;
+  user?: Partial<User>;
   emailSent: boolean;
 }

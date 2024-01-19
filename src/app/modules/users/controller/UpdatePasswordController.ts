@@ -4,6 +4,7 @@ import { logger } from '@shared/log/logger'
 import HttpStatusCode from '@/app/shared/enums/httpStatusCode'
 import { QueryParams } from '@/app/auth/domain/interfaces'
 import UpdatePasswordUseCase from '../useCases/UpdatePasswordUseCase'
+import ErrorCode from '@/app/shared/error/errorCode'
 
 export default class UpdatePasswordController {
   async execute(req: Request, res: Response) {
@@ -12,7 +13,12 @@ export default class UpdatePasswordController {
 
     const params: QueryParams = {
       id: decodedToken.id,
-      password: req.body.password,
+      password: req.body?.password,
+    }
+
+    if (!params.password) {
+      logger({ HttpType: 'POST', route: '/users/update-password', useremail: decodedToken.email, error: 'Missing required fields', success: false })
+      res.status(HttpStatusCode.BAD_REQUEST).json({ error: [ErrorCode.ERR0008] })
     }
 
     const updatePasswordUseCase = new UpdatePasswordUseCase()
