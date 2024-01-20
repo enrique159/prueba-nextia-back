@@ -253,7 +253,7 @@ El módulo cuenta con los siguientes endpoints
   }
 }
 ```
-2. Get Invitations (/invitations/)
+2. Get Invitations (/invitations) 
 ```JSON
 [GET] URL_BASE/invitations
 
@@ -262,33 +262,45 @@ El módulo cuenta con los siguientes endpoints
   "Authorization": "Bearer YOUR_TOKEN" 
 }
 
+[QUERY PARAMS] (Opcionales: puedes consumir el endpoint sin parámetros)
+{
+  "page": 1,           // default 1
+  "limit": 10,         // default 10
+  "search": "",        // default ""
+  "sort": "createdAt", // default createAt property
+  "order": "DESC"      // default DESC
+}
+
 [RESPONSE] (Status 200)
 {
-  "data": [
-    {
-      "id": "6a0b875f-5881-457a-a229-6dd10e03d48a",
-      "guestName": "Eduardo Quintero Arroz",
-      "date": "24 Diciembre 2025",
-      "hour": "16:00",
-      "caducity": "2024-01-19T04:55:39.000Z",
-      "status": "pending",
-      "createdAt": "2024-01-19T06:50:11.000Z",
-      "updatedAt": "2024-01-19T07:12:46.000Z",
-      "userId": "f988f414-3259-47f4-aba0-1266031298f5"
-    },
-    ...
-    {
-      "id": "8464a16d-e120-41be-9c76-840be2cbd33a",
-      "guestName": "Eduardo Quintero",
-      "date": "24 Diciembre 2024",
-      "hour": "18:00",
-      "caducity": "2024-01-19T04:55:39.000Z",
-      "status": "pending",
-      "createdAt": "2024-01-19T06:50:10.000Z",
-      "updatedAt": "2024-01-19T06:50:10.000Z",
-      "userId": "f988f414-3259-47f4-aba0-1266031298f5"
-    }
-  ]
+  "data": {
+    "count": 6,
+    "rows": [
+      {
+        "id": "d8bc59fe-d4a0-4653-aaf7-3cd852d4eecf",
+        "guestName": "Angelica Hirales",
+        "date": "24 Diciembre 2024",
+        "hour": "18:00",
+        "caducity": "2024-01-19T04:55:39.000Z",
+        "status": "pending",
+        "createdAt": "2024-01-20T18:03:34.000Z",
+        "updatedAt": "2024-01-20T18:03:34.000Z",
+        "userId": "777a531c-5353-41da-abd2-d30f84c054a5"
+      },
+      ...
+      {
+        "id": "7d8a1af4-fce9-4e4a-9331-60fc2f50f8e5",
+        "guestName": "Eduardo Trasviña",
+        "date": "24 Diciembre 2024",
+        "hour": "18:00",
+        "caducity": "2024-01-19T04:55:39.000Z",
+        "status": "pending",
+        "createdAt": "2024-01-20T18:03:02.000Z",
+        "updatedAt": "2024-01-20T18:03:02.000Z",
+        "userId": "777a531c-5353-41da-abd2-d30f84c054a5"
+      }
+    ]
+  }
 }
 ```
 

@@ -17,4 +17,8 @@ export interface UpdateOneConstructor<T,U> extends BaseConstructor<T> {
   update(value: T, condition): Promise<U>;
 }
 
-export type ModelConstructor<T, U = T> = CreateConstructor<T> & FinderConstructor<T, U> & UpdateOneConstructor<T, U>;
+export interface GetByPaginationRepository<U> {
+  findAndCountAll(value): Promise<U>;
+}
+
+export type ModelConstructor<T, U = T> = CreateConstructor<T> & FinderConstructor<T, U> & UpdateOneConstructor<T, U> & GetByPaginationRepository<U>;

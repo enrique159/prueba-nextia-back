@@ -4,6 +4,7 @@ import { decodeToken } from '@/plugins/jwt/decodeToken'
 import GetInvitationsUseCase from '../useCases/GetInvitationsUseCase'
 import { UserId } from '../../users/domain/interfaces'
 import HttpStatusCode from '@/app/shared/enums/httpStatusCode'
+import { IMetaPagination } from '@/app/shared/common/domain/IMetaPagination'
 
 export default class GetInvitationsController {
   async execute(req: Request, res: Response) {
@@ -14,8 +15,16 @@ export default class GetInvitationsController {
       userId: decodedToken.id,
     }
 
+    const metaPagination: IMetaPagination = {
+      page: parseInt(req.query.page?.toString()) || 1,
+      limit: parseInt(req.query.limit?.toString()) || 10,
+      sort: req.query.sort?.toString() || 'createdAt',
+      search: req.query.search?.toString() || '',
+      order: req.query.order?.toString() || 'DESC',
+    }
+
     const useCase = new GetInvitationsUseCase()
-    await useCase.execute(userId)
+    await useCase.execute({ userId, meta: metaPagination })
       .then((response) => {
         logger({ HttpType: 'GET', route: '/invitations', useremail: decodedToken.email, success: true })
         res.status(HttpStatusCode.OK).json({ data: response })
