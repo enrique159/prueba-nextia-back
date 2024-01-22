@@ -4,6 +4,7 @@ import GetInvitationsController from './controller/GetInvitationsController'
 import GetInvitationController from './controller/GetInvitationController'
 import DeleteInvitationController from './controller/DeleteInvitationController'
 import UpdateInvitationController from './controller/UpdateInvitationController'
+import AcceptInvitationController from './controller/AcceptInvitationController'
 import VerifyAuthMiddleware from '@/app/middleware/VerifyAuthMiddleware'
 
 export const InvitationRoutes = () => {
@@ -14,6 +15,7 @@ export const InvitationRoutes = () => {
   const getInvitationController = new GetInvitationController()
   const deleteInvitationController = new DeleteInvitationController()
   const updateInvitationController = new UpdateInvitationController()
+  const acceptInvitationController = new AcceptInvitationController()
   // Middlewares
   const verifyAuthMiddleware = new VerifyAuthMiddleware()
 
@@ -22,11 +24,13 @@ export const InvitationRoutes = () => {
   // GET INVITATIONS: Obtener invitaciones
   router.get('/', verifyAuthMiddleware.execute, getInvitationsController.execute)
   // GET INVITATION: Obtener invitación
-  router.get('/:id', verifyAuthMiddleware.execute, getInvitationController.execute)
+  router.get('/:id', getInvitationController.execute)
   // DELETE INVITATION: Eliminar invitación
   router.delete('/:id', verifyAuthMiddleware.execute, deleteInvitationController.execute)
   // UPDATE INVITATION: Actualizar invitación
   router.put('/:id', verifyAuthMiddleware.execute, updateInvitationController.execute)
+  // ACCEPT INVITATION: Aceptar invitación
+  router.get('/accept/:id', acceptInvitationController.execute)
 
   return router
 }

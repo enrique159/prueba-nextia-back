@@ -8,7 +8,7 @@ import HttpStatusCode from '@/app/shared/enums/httpStatusCode'
 import ErrorCode from '@/app/shared/error/errorCode'
 
 export default class GetInvitationUseCase implements BaseUseCase<InvitationId & UserId, Promise<Invitation>> {
-  async execute(payload: InvitationId & UserId): Promise<Invitation> {
+  async execute(payload: InvitationId): Promise<Invitation> {
     const { id } = payload
     const connection = await DBConnectionManager.getInstance()
     const repository = new GetInvitationRepository(connection)
@@ -16,10 +16,6 @@ export default class GetInvitationUseCase implements BaseUseCase<InvitationId & 
 
     if (!response) {
       throw new Exception(HttpStatusCode.NOT_FOUND, ErrorCode.ERR0001)
-    }
-
-    if (response.userId !== payload.userId) {
-      throw new Exception(HttpStatusCode.UNAUTHORIZED, ErrorCode.ERR0021)
     }
 
     return response
